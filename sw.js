@@ -1,6 +1,6 @@
 // Lets the installed app open without a connection. Always tries the network
 // first so updates show straight away, and falls back to the last saved copy.
-const CACHE = 'sf-review-v1';
+const CACHE = 'sf-review-v2';
 const FILES = ['./', 'index.html', 'app.js', 'data.js', 'styles.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', event => {
