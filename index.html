@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Siong Fatt Financial Review</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div class="brand">
+        <h1 id="company">Financial review</h1>
+        <p id="period" class="muted"></p>
+      </div>
+      <div class="actions">
+        <button id="btn-print" type="button">Print</button>
+        <button id="btn-export" type="button">Export data</button>
+        <label class="btn" for="file-import">Import data</label>
+        <input id="file-import" type="file" accept="application/json,.json" hidden>
+        <button id="btn-compare" type="button">Comparison</button>
+        <button id="btn-reset" type="button" class="ghost">Reset to report</button>
+      </div>
+    </div>
+    <nav class="wrap tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+  </header>
+
+  <main class="wrap">
+    <div id="notice" class="notice" role="status" hidden></div>
+    <section class="panel" id="p-summary" data-tab="summary"></section>
+    <section class="panel" id="p-profit" data-tab="profit"></section>
+    <section class="panel" id="p-cash" data-tab="cash"></section>
+    <section class="panel" id="p-equity" data-tab="equity"></section>
+    <section class="panel" id="p-shares" data-tab="shares">
+      <div class="out" id="out-shares"></div>
+      <div class="card">
+        <h3>Valuation assumptions</h3>
+        <p class="note">Change these to see how the value per share moves.</p>
+        <div class="controls" id="ctl-shares"></div>
+      </div>
+    </section>
+    <section class="panel" id="p-whatif" data-tab="whatif">
+      <div class="card">
+        <h3>Targets</h3>
+        <p class="note">Set the targets you want to reach. The results below update as you move the sliders.</p>
+        <div class="controls" id="ctl-whatif"></div>
+      </div>
+      <div class="out" id="out-whatif"></div>
+    </section>
+    <section class="panel" id="p-compare" data-tab="compare">
+      <div class="card">
+        <div class="card-head">
+          <h3>Yearly reports</h3>
+          <label class="btn" for="file-reports">Add report from file</label>
+          <input id="file-reports" type="file" accept=".pdf,.json,.csv,application/pdf,application/json,text/csv" multiple hidden>
+        </div>
+        <p class="note">Select a year's profit and loss PDF and balance sheet PDF together, and they become one report. You can also use a data file exported from this app, or a CSV with the columns code, account, section, group and amount. Reading PDFs needs an internet connection the first time.</p>
+        <div id="report-status" class="note" role="status"></div>
+        <div id="report-list"></div>
+        <details class="manual">
+          <summary>Enter key figures by hand</summary>
+          <form id="manual-form" class="manual-grid" novalidate></form>
+        </details>
+      </div>
+      <div class="card">
+        <h3>Compare</h3>
+        <div class="compare-pick">
+          <label for="cmp-a">Report <select id="cmp-a"></select></label>
+          <label for="cmp-b">Compare against <select id="cmp-b"></select></label>
+        </div>
+      </div>
+      <div class="out" id="out-compare"></div>
+    </section>
+    <section class="panel" id="p-data" data-tab="data">
+      <div class="card">
+        <h3>Check totals</h3>
+        <div id="data-totals"></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h3>Profit and loss lines</h3>
+          <button type="button" id="add-pl">Add line</button>
+        </div>
+        <p class="note">Expenses and costs are positive. Closing stock, purchase returns and tax credits are negative.</p>
+        <div class="table-wrap" id="data-pl"></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h3>Balance sheet lines</h3>
+          <button type="button" id="add-bs">Add line</button>
+        </div>
+        <p class="note">Liabilities and equity are positive. Contra items such as impairment or interest suspense are negative.</p>
+        <div class="table-wrap" id="data-bs"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="tip" class="tip" hidden></div>
+  <datalist id="groups-list"></datalist>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

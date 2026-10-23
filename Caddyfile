@@ -1,0 +1,10 @@
+{
+	admin off
+}
+
+# Railway provides the port in $PORT; 8080 is used when running elsewhere.
+:{$PORT:8080} {
+	root * /srv
+	encode gzip
+	file_server
+}
